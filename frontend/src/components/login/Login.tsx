@@ -1,9 +1,11 @@
 import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("ken888686");
   const [password, setPassword] = useState("asas456789");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const navigate = useNavigate();
 
   function usernameOnChange(event: ChangeEvent<HTMLInputElement>) {
     setUsername(event.target.value);
@@ -16,6 +18,7 @@ export default function Login() {
       setUsername("");
       setPassword("");
       setShowSuccessMessage(true);
+      navigate("/welcome");
     } else {
       setShowSuccessMessage(false);
     }
