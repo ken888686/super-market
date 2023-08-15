@@ -4,6 +4,10 @@ logging:
 spring:
   profiles:
     active: dev
+  security:
+    user:
+      name: admin
+      password: password
   jpa:
     hibernate:
       ddl-auto: update

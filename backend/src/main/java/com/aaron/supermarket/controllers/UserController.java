@@ -2,10 +2,8 @@ package com.aaron.supermarket.controllers;
 
 import com.aaron.supermarket.models.User;
 import com.aaron.supermarket.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -24,5 +22,10 @@ public class UserController {
     @GetMapping("{id}")
     public User getById(@PathVariable Integer id) {
         return userService.getById(id);
+    }
+
+    @PostMapping
+    public User create(@Valid @RequestBody User user) {
+        return userService.create(user);
     }
 }
