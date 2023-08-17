@@ -1,11 +1,11 @@
 services:
   mysql:
-    image: "mysql:latest"
+    image: mysql:latest
     environment:
-      - "MYSQL_DATABASE=rsl_db"
-      - "MYSQL_USER=admin"
-      - "MYSQL_PASSWORD=password"
-      - "MYSQL_ROOT_PASSWORD=password"
+      - MYSQL_DATABASE=rsl_db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
     ports:
       - 3306:3306
     volumes:
