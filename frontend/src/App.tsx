@@ -1,10 +1,10 @@
 import "./App.scss";
-import TodoApp from "./components/todo/TodoApp";
+import Welcome from "./components/welcome/Welcome";
 
 function App() {
   return (
     <>
-      <TodoApp />
+      <Welcome />
     </>
   );
 }
