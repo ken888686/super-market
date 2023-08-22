@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SuperMarketApplication<super-market>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/backend",
+      "mainClass": "com.aaron.supermarket.SuperMarketApplication",
+      "projectName": "super-market",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

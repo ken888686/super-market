@@ -1,18 +1,49 @@
 services:
-  mysql:
+  db:
     image: mysql:latest
-    environment:
-      - MYSQL_DATABASE=rsl_db
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=password
+    command: --default-authentication-plugin=caching_sha2_password
     ports:
       - 3306:3306
     volumes:
       - db-data:/var/lib/mysql
+    secrets:
+      - db-password
     networks:
-      - super-internet
+      - mysql
+    environment:
+      - MYSQL_DATABASE=rsl_db
+      - MYSQL_ROOT_PASSWORD=/run/secrets/db-password
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    networks:
+      - mysql
+      - web
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=password
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+      - db
+    ports:
+      - 3000:80
+    networks:
+      - web
+secrets:
+  db-password:
+    file: db/password.txt
 volumes:
   db-data:
 networks:
-  super-internet:
+  web:
+  mysql:
